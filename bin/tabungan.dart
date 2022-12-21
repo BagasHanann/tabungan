@@ -86,7 +86,7 @@ Future<Response> _authLoginHandler(Request request) async {
     var matchPassword = findEmail.first.fields["password"] ==
         md5.convert(utf8.encode(password)).toString();
     if (matchPassword) {
-      final payload = JWT(findEmail.first.fields);
+      final payload = JWT({"user": findEmail.first.fields});
       var token = payload.sign(SecretKey('tabungannn'));
 
       var user = {"user": findEmail.first.fields, "jwt": token};
